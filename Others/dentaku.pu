@@ -1,0 +1,34 @@
+@startuml
+title クラス図
+class View
+class Controller{
+    bool isPower
+    OnClick(string)
+    PowerSwitch(bool)
+}
+
+class Presenter{
+
+}
+class Model{
+    enum ButtonNames
+    string viewText
+    int tempNumber
+    string tempSymbol
+    KeyManager(string)
+    Memory()
+    Clear()
+    Add(float)
+    Subtract(float)
+    Multiply(float)
+    Divide(float)
+    Root(float)
+    Percent(float)
+    
+
+}
+
+View -- Controller
+Controller -- Presenter
+Presenter -- Model
+@enduml
