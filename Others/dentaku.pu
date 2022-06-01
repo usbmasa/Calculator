@@ -2,33 +2,64 @@
 title クラス図
 class View
 class Controller{
+    Presenter _presenter
+    Button[] simplekeys
+    InputField display
+    +Subject<string> buttonClickSub
+    +IObservable<string> ObservableKey
     bool isPower
+    bool isClearEntry
+    Start()
     OnClick(string)
-    PowerSwitch(bool)
+    OnPower()
+    Show(string)
 }
 
 class Presenter{
-
+    Controller _controller
+    Model _model
+    +ReactiveProperty<string> _viewText
+    +IObservable<string> ObservableViewText
+    Start()
 }
-class Model{
-    enum ButtonNames
-    string viewText
-    int tempNumber
-    string tempSymbol
-    KeyManager(string)
-    Memory()
-    Clear()
-    Add(float)
-    Subtract(float)
-    Multiply(float)
-    Divide(float)
-    Root(float)
-    Percent(float)
-    
-
+namespace ModelSpace {
+    class Model{
+        Presenter _presenter
+        ModelDisplay _modelDisplay
+        +ReactiveProperty<string> _viewText
+        +IObservable<string> ObservableViewText
+        +Subject<string> filterSub
+        string tmpNumber
+        string[] tmpNumbers
+        double answerNumber
+        string[] tmpSymbols
+        int mathCount
+        double memoryNumber
+        Start()
+        ClearKey()
+        ClearEntryKey()
+        NumberKey(string
+        MathKey(string)
+        ParcentKey(string)
+        SqrtKey(string)
+        EqualKey()
+        MemoryKey(string)
+        ToDouble(string)
+    }
+    class ModelDisplay{
+        UpdateView(string)
+        ShowIsEqual()
+    }
+}
+namespace Calculator {
+    class Calculate{
+        DoMath(string,double,double)
+    }
 }
 
 View -- Controller
 Controller -- Presenter
-Presenter -- Model
+Presenter -- ModelSpace.Model
+ModelSpace.Model -- ModelSpace.ModelDisplay
+ModelSpace.Model ..> Calculator.Calculate
 @enduml
