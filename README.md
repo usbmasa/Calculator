@@ -1,2 +1,2 @@
 # Calculator
- 電卓課題
+ 電卓
